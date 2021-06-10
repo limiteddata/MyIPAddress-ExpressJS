@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>My IPAddress - <%=title%></title>
+  <%- include('./links')-%>
+  <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0; margin: 0 auto;}
+.tg td{font-family:Arial, sans-serif;font-size:13px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:13px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+</head>
+
+<body>
+  <%- include('./nav')-%>
+  <div class="container" style="margin-bottom:40px;">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 centered">
+        <h1>TraceRoute</h1>
+        <input id="hostname" placeholder="hostname or ipaddress" type="text" autocomplete="off" name="hostname"></input>
+        <input id="hops" placeholder="hops" type="text" autocomplete="off" name="hops" value="30"></input>
+        <button onclick="sendHostname()">Start</button>
+        <p id="title"></p>
+        <div id="divResult"></div>
+      </div>
+    </div>
+  </div>
+  <%- include('./footer')-%>
+  <script>
+function sendHostname(){
+$("#title").html("");
+$("#divResult").html("Loading...");
+$.post("/trace", {hostname:document.getElementById("hostname").value,hops:document.getElementById("hops").value}).
+done(function(data){
+  rows=data.results;
+  $("#title").html(`<p>${data.title}</p>`);
+  $("#divResult").html(`
+    <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>HOSTNAME/IPADDRESS</th>
+        <th>TIME</th>
+      </tr>
+    </thead>
+    <tbody id="tableResults">
+    </tbody>`);
+  for(i=0;i<rows.length;i++){
+    $("#tableResults").append(`
+      <tr>
+              <td>${rows[i]['id']}</td>
+              <td>${rows[i]['hostname']}${rows[i]['ipaddress']}</td>
+              <td>${rows[i]['time']} ${rows[i]['unit']}</td>
+      </tr>`);
+  }
+});
+
+}
+</script>
+</body>
+</html>

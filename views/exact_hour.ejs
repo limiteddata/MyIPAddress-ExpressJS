@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>My IPAddress - <%=title%></title>
+    <%- include('./links')-%>
+  </head>
+  <body>
+    <%- include('./nav')-%>
+    <div class="container" style="margin-bottom:40px;">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 centered">
+            <div style="margin-top:40px;">
+              <h1>EXACT HOUR</h1>
+              <h2 id='ceas'></h2>
+            </div>
+            <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">EXACT HOUR</th>
+                <th scope="col">TimeZone</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%- include('./footer')-%>
+
+    <script>
+      setInterval(function() {
+            var tz = moment.tz.guess()
+            var current_datetime = moment.tz(tz).format('MM/DD/YYYY HH:mm:ss A');
+            document.getElementById("ceas").innerHTML = current_datetime + " " + tz;
+            $("#tableBody").html("");
+            let date = new Date;
+            var TimeZones =
+            [ 'Africa/Abidjan',
+              'America/Los_Angeles',
+              'America/Mexico_City',
+              'America/Puerto_Rico',
+              'America/Santiago',
+              'Asia/Hong_Kong',
+              'Asia/Shanghai',
+              'Australia/Eucla',
+              'Europe/Amsterdam',
+              'Europe/Andorra',
+              'Europe/Athens',
+              'Europe/Belgrade',
+              'Europe/Berlin',
+              'Europe/Bucharest',
+              'Europe/Budapest',
+              'Europe/Chisinau',
+              'Europe/London',
+              'Europe/Luxembourg',
+              'Europe/Madrid',
+              'Europe/Malta',
+              'Europe/Minsk',
+              'Europe/Monaco',
+              'Europe/Moscow',
+              'Europe/Oslo',
+              'Europe/Paris',
+              'Europe/Prague',
+              'Europe/Rome',
+              'Europe/Vienna'];
+              TimeZones.forEach(function (timeZone, i) {
+                let strTime = date.toLocaleString("en-US", {timeZone: `${timeZone}`});
+                $("#tableBody").append(
+                      `<tr>
+                        <td scope="col">${i}</td>
+                        <td scope="col" id="Ora">${strTime}</td>
+                        <td scope="col">${timeZone}</td>
+                      </tr>`);
+              });
+      }, 1000);
+  </script>
+  </body>
+</html>

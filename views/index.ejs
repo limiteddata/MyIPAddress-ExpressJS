@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My IPAddress - <%=title%></title>
+  <%- include('./links')-%>
+</head>
+<body>
+  <%- include('./nav')-%>
+  <div class="container" style="margin-bottom:40px;">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 centered">
+          <h1 class="medium">Your IPAddress is: <p class="small" id="ipaddress"><%=ip%></p> </h1>
+          <div id="location"></div>
+          <div id="mapid" style="width:100%; height: 600px;"></div>
+
+        </div>
+      </div>
+    </div>
+  <%- include('./footer')-%>
+  <script>
+    function success(pos) {
+        var map = L.map('mapid').setView({lon: pos.coords.longitude, lat: pos.coords.latitude}, 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.control.scale().addTo(map);
+        L.marker({lon: pos.coords.longitude, lat: pos.coords.latitude}).bindPopup('Your position!').addTo(map);
+    }
+    function error(err) {
+      $.get("/getLocation").done(function(data) {
+          var mymap = L.map('mapid').setView({lon: data.locationLongitude, lat: data.locationLatitude}, 14);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
+          L.control.scale().addTo(mymap);
+          L.marker({lon: data.locationLongitude, lat: data.locationLatitude}).bindPopup('Your position!').addTo(mymap);
+      });
+      console.log(`ERROR(${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(success, error, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    });
+</script>
+</body>
+</html>

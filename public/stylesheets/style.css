@@ -1,0 +1,132 @@
+body {
+	background-color: #fff;
+	font-family: Montserrat, sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	background-color: #f2f2f2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Montserrat, sans-serif;
+	font-weight: 700;
+	color: #333
+}
+
+h1 {
+	font-size: 35px;
+	margin-top: 30px;
+	margin-bottom: 30px
+}
+
+p {
+	line-height: 28px;
+	margin-bottom: 25px;
+	font-size: 16px
+}
+
+.centered {
+	text-align: center
+}
+
+a {
+	color: #1abc9c;
+}
+
+a:focus,
+a:hover {
+	color: #7b7b7b;
+	text-decoration: none;
+	outline: 0
+}
+
+.navbar {
+	text-transform: uppercase;
+	margin-bottom: 0
+}
+
+.navbar-inverse {
+	padding: 30px 0
+}
+
+@media (max-width:768px) {
+	.navbar-inverse {
+		padding: 15px 0
+	}
+}
+
+.navbar-inverse {
+	background-color: #6ab04c;
+	border-color: #6ab04c;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #fff
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+	color: #222
+}
+
+.navbar-brand {
+	font-weight: 700;
+	font-size: 20px;
+	letter-spacing: 2px
+}
+
+.navbar-inverse .navbar-brand {
+	color: #fff
+}
+
+.navbar-inverse .navbar-toggle {
+	border-color: transparent
+}
+
+#footer {
+	background-color: #2f2f2f;
+	padding-top: 50px;
+	padding-bottom: 50px
+}
+
+#footer p {
+	color: #fff
+}
+
+#footer h4 {
+	color: #fff;
+	text-transform: uppercase;
+	padding-bottom: 20px
+}
+
+#contact {
+	padding: 40px 0
+}
+#copyrights {
+  background: #222222;
+	width: 100%;
+  padding: 20px 0;
+  text-align: center;
+position: fixed;
+bottom: 0px;
+}
+
+#copyrights p {
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+#copyrights a {
+  color: #6ab04c;
+}
+
+.credits {
+  color: #999;
+}
+#map{
+	width: 800px;
+	height: 800px;
+}

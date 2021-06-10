@@ -1,0 +1,22 @@
+{
+  "name": "MyIPAddress",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@supercharge/request-ip": "^1.1.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "geoip-lite": "^1.4.2",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "node-geocoder": "^3.27.0",
+    "npm": "^7.16.0",
+    "public-ip": "^4.0.4",
+    "views": "^1.0.2"
+  }
+}
